@@ -38,8 +38,12 @@ public abstract class BasePresenterActivity<V, P extends Presenter<V>> extends A
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new LoaderBridge<P>(this, getSupportLoaderManager(), DEFAULT_BASE_LOADER_ID)
+        new LoaderBridge<P>(this, getSupportLoaderManager(), getLoaderId())
                 .retrievePresenter(savedInstanceState, getPresenterFactory(), this);
+    }
+
+    protected int getLoaderId() {
+        return DEFAULT_BASE_LOADER_ID;
     }
 
     public abstract FactoryWithType<P> getPresenterFactory();

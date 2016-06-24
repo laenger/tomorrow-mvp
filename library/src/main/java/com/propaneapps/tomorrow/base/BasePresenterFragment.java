@@ -40,8 +40,12 @@ public abstract class BasePresenterFragment<V, P extends Presenter<? super V>> e
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        new LoaderBridge<P>(getActivity(), getLoaderManager(), DEFAULT_BASE_LOADER_ID)
+        new LoaderBridge<P>(getActivity(), getLoaderManager(), getLoaderId())
                 .retrievePresenter(savedInstanceState, getPresenterFactory(), this);
+    }
+
+    protected int getLoaderId() {
+        return DEFAULT_BASE_LOADER_ID;
     }
 
     public abstract FactoryWithType<P> getPresenterFactory();
