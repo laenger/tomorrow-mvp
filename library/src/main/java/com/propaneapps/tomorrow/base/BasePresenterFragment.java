@@ -15,7 +15,6 @@
  */
 package com.propaneapps.tomorrow.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -78,8 +77,7 @@ public abstract class BasePresenterFragment<V, P extends Presenter<? super V>> e
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Activity activity = getActivity();
-        if (activity != null && activity.isFinishing()) {
+        if (isRemoving()) {
             presenter.onDestroy();
         }
     }
