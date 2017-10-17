@@ -63,12 +63,6 @@ public abstract class BasePresenterFragment<V, P extends Presenter<? super V>> e
     public abstract V getViewLayer();
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        presenter.onSaveInstanceState(outState);
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
         presenter.unbindView();
